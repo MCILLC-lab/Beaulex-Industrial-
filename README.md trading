@@ -1,0 +1,51 @@
+def start_trading(initial_capital):
+    # Set initial capital
+    capital = initial_capital
+    
+    # Define trading strategy function
+    def trading_strategy(stock_price):
+        # Place your trading strategy here
+        # For example, you could buy stocks if the price increases by 5% and sell if it decreases by 2%
+        # Remember to consider transaction fees and other factors in your strategy
+        
+        return "BUY" # Placeholder value
+    # Simulate trading for a certain number of days
+    num_days = 30
+    stock_prices = [100, 105, 98, 102, 108, 110, 115, 112, 105, 98, 95, 100, 102, 98, 105, 108, 112, 115, 120, 118,
+                    125, 128, 132, 128, 130, 135, 140, 138, 142, 145]
+    
+    for day in range(num_days):
+        current_price = stock_prices[day]
+        
+        # Calculate trading decision based on strategy
+        decision = trading_strategy(current_price)
+        
+        if decision == "BUY":
+            # Buy stocks
+            
+            # Determine the amount of stocks to buy based on available capital
+            available_stocks = capital // current_price
+            amount_to_buy = available_stocks // 2 # Example: Buying half of available stocks
+            
+            # Update capital and stocks
+            capital -= amount_to_buy * current_price
+            print(f"Bought {amount_to_buy} stocks at price {current_price}.")
+        
+        elif decision == "SELL":
+            # Sell stocks
+            
+            # Determine the amount of current stocks to sell
+            current_stocks = (initial_capital - capital) // current_price
+            amount_to_sell = current_stocks // 2 # Example: Selling half of current stocks
+            
+            # Update capital and stocks
+            capital += amount_to_sell * current_price
+            print(f"Sold {amount_to_sell} stocks at price {current_price}.")
+        
+        else:
+            continue
+    
+    print(f"Final capital after {num_days} days of trading: {capital}")
+    
+# Call the function with initial capital of $1,000,000
+start_trading(1000000)
